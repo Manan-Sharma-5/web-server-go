@@ -10,5 +10,6 @@ func main() {
 	router := gin.Default()
 	modal.ConnectDatabase()
 	router.POST("/post", Controller.CreatePost)
+	router.GET("/post", Controller.ReadPost)
 	router.Run("localhost:8080")
 }

@@ -25,3 +25,10 @@ func CreatePost(c *gin.Context) {
 	modal.DB.Create(&post)
 	c.JSON(http.StatusOK, gin.H{"data": post})
 }
+
+func ReadPost(c *gin.Context) {
+	var posts []modal.Post
+	modal.DB.Find(&posts)
+
+	c.JSON(http.StatusOK, gin.H{"data": posts})
+}
