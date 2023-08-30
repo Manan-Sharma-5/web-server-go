@@ -11,5 +11,7 @@ func main() {
 	modal.ConnectDatabase()
 	router.POST("/post", Controller.CreatePost)
 	router.GET("/post", Controller.ReadPost)
+	router.GET("/post/:id", Controller.FindPost)
+	router.PATCH("/post/:id", Controller.UpdatePost)
 	router.Run("localhost:8080")
 }
