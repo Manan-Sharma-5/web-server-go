@@ -65,3 +65,14 @@ func UpdatePost(c *gin.Context) {
 	modal.DB.Model(&post).Updates(input)
 	c.JSON(http.StatusOK, gin.H{"data": post})
 }
+
+func DeletePost(c *gin.Context) {
+	var post modal.Post
+	if err := modal.DB.Where("id = ?", c.Param("id")).First(&post).Error; err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+			"error": "Record Not Found"})
+	}
+	modal.DB.Model(&post).Delete(&post)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Success in deletion"})
+}
